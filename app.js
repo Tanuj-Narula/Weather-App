@@ -22,7 +22,7 @@ async function getUserCoords(){
     }); 
   }catch (error) {
    console.log(error);
-   alert(error);
+   alert("please turn on the location");
    window.location.reload();
   }
 }
