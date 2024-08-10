@@ -31,7 +31,6 @@ async function getuserlocationname(latitude,longitude){
   try {
     let locationName =  await fetch(`${userlocationApi}lat=${latitude}&lon=${longitude}&apiKey=08ced47036fc4a89a307364d85b0c526`);
     userlocationData = await locationName.json();
-    console.log(userlocationData);
     params.timezone = userlocationData.features[0].properties.timezone.name;
     timeZone = userlocationData.features[0].properties.timezone.name;
   } catch (error) {
