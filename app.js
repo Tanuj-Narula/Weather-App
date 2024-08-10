@@ -13,7 +13,12 @@ async function getUserCoords(){
       await getuserlocationname(p.coords.latitude, p.coords.longitude);
       await getTime();
       await getForecast();
-      city.innerText =  userlocationData.features[0].properties.city.toUpperCase();      
+      if(userlocationData.features[0].properties.state){
+        city.innerText =  userlocationData.features[0].properties.state.toUpperCase();   
+      }
+      else if(userlocationData.features[0].properties.city){
+        city.innerText =  userlocationData.features[0].properties.city.toUpperCase();
+      }
     }); 
   }catch (error) {
    console.log(error);
@@ -26,6 +31,7 @@ async function getuserlocationname(latitude,longitude){
   try {
     let locationName =  await fetch(`${userlocationApi}lat=${latitude}&lon=${longitude}&apiKey=08ced47036fc4a89a307364d85b0c526`);
     userlocationData = await locationName.json();
+    console.log(userlocationData);
     params.timezone = userlocationData.features[0].properties.timezone.name;
     timeZone = userlocationData.features[0].properties.timezone.name;
   } catch (error) {
